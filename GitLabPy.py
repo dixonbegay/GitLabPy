@@ -42,7 +42,7 @@ class GitLab:
                     - "homepage" : retrieve homepage url
                     - (no input) : retrieve default git url, which is: "repository": {"url": <url>}
         """
-        if check_repository_atttr():
+        if not self.check_repository_atttr():
             return False
         if url.lower() == "ssh":
             return self.repository.get("git_ssh_url")
