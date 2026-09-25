@@ -8,7 +8,7 @@ version = "0.6.1"
 description = "A Python module to sort GitLab's Webhooks"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [
     { name = "Dixon Begay", email = "dixon@dixon-labs.net" },
 ]
@@ -29,7 +29,7 @@ Issues = "https://github.com/dixonbegay/GitLabPy/issues"
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0",
+    "pytest>=9.0.3",
 ]
 
 [tool.hatch.build.targets.wheel]
