@@ -71,7 +71,7 @@ echo "==> Running tests"
 uv run pytest
 
 echo "==> Committing version bump"
-git add "$PYPROJECT"
+git add "$PYPROJECT" uv.lock
 git commit -m "Bump version to $new_version"
 
 echo "==> Building sdist and wheel"
