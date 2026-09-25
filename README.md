@@ -28,3 +28,17 @@ uv run pytest
 # Build the sdist and wheel
 uv build
 ```
+
+## Releasing
+Releases are published manually from a local machine (no CI publish step).
+
+```bash
+# 1. Bump the version in pyproject.toml, then build
+uv build
+
+# 2. Publish to PyPI
+uv publish
+
+# 3. Create the GitHub release (tags and publishes the release)
+gh release create vX.Y.Z --generate-notes
+```
