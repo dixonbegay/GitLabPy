@@ -10,10 +10,10 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [
-    { name = "Dixon Begay", email = "dixonbegay@gmail.com" },
+    { name = "Dixon Begay", email = "dixon@dixon-labs.net" },
 ]
 maintainers = [
-    { name = "Dixon Begay", email = "dixonbegay@gmail.com" },
+    { name = "Dixon Begay", email = "dixon@dixon-labs.net" },
 ]
 keywords = ["gitlabpy"]
 classifiers = [
