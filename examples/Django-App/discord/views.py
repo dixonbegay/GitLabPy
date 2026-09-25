@@ -1,6 +1,7 @@
+import hmac
 import json
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
@@ -20,6 +21,10 @@ class GitLabHookView(View):
         return HttpResponse("Get Request... GitLab WebHook")
 
     def post(self, request, *args, **kwargs):
+        token = request.headers.get("X-Gitlab-Token", "")
+        if not hmac.compare_digest(token, settings.GITLAB_SECRET_TOKEN):
+            return HttpResponseForbidden("Invalid or missing X-Gitlab-Token")
+
         json_data = json.loads(request.body.decode('utf-8'))
 
         with open("{}\gitlab-webhook-debug-{}.json".format(settings.TMP_DIR, time.strftime("%j%H%M", time.localtime())), 'w') as f:
@@ -55,7 +60,7 @@ class GitLabHookView(View):
         elif GitLab_Obj.note(True):
             msg = "[{}] {} commented on {}\n'{}'\n{}".format(
                 GitLab_Obj.object_attributes.get("noteable_type"), GitLab_Obj.user.get("name"),
-                GitLab_Obj.object_attributes.get("id"), selGitLab_Objf.object_attributes.get("note"),
+                GitLab_Obj.object_attributes.get("id"), GitLab_Obj.object_attributes.get("note"),
                 GitLab_Obj.object_attributes.get("url")
             )
             r = requests.post(settings.DISCORD_WEBHOOK, json={"content" : msg})
