@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "GitLabPy"
+version = "0.6.1"
+description = "A Python module to sort GitLab's Webhooks"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+    { name = "Dixon Begay", email = "dixonbegay@gmail.com" },
+]
+maintainers = [
+    { name = "Dixon Begay", email = "dixonbegay@gmail.com" },
+]
+keywords = ["gitlabpy"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/dixonbegay/GitLabPy"
+Issues = "https://github.com/dixonbegay/GitLabPy/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.hatch.build.targets.wheel]
+include = ["GitLabPy.py"]
+
+[tool.hatch.build.targets.sdist]
+include = ["GitLabPy.py", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

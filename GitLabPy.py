@@ -20,6 +20,10 @@ class GitLab:
         self.object_attributes = arg1.get("object_attributes", "")
         self.build_status = arg1.get("build_status", "")
 
+        self.repository = ""
+        self.repo_name = ""
+        self.repo_homepage = ""
+
         repo_obj = arg1.get("repository", "")
         if repo_obj != "":
             self.repository = repo_obj
@@ -44,6 +48,8 @@ class GitLab:
         """
         if not self.check_repository_atttr():
             return False
+        if url is None:
+            return self.repository.get("url")
         if url.lower() == "ssh":
             return self.repository.get("git_ssh_url")
         elif url.lower() == "http":
@@ -58,7 +64,7 @@ class GitLab:
         Arguments: None
         Checks to see if the key 'description' is in the webhook
         """
-        if check_repository_atttr():
+        if self.check_repository_atttr():
             return self.repository.get("description")
         else:
             return False
@@ -110,12 +116,10 @@ class GitLab:
         if self.object_kind != "issue":
             return False
 
-        if "open" in args or "closed" in args:
-            if self.object_attributes.get("state") == "closed" and "closed" in args:
-                return True
-            elif self.object_attributes.get("action") == "open" and "open" in args:
-                return True
-        elif "update" in args and self.object_attributes.get("action") == "update":
+        if "closed" in args and self.object_attributes.get("state") == "closed":
             return True
-        else:
-            return False
+        if "open" in args and self.object_attributes.get("action") == "open":
+            return True
+        if "update" in args and self.object_attributes.get("action") == "update":
+            return True
+        return False
