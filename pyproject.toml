@@ -17,7 +17,6 @@ maintainers = [
 ]
 keywords = ["gitlabpy"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Topic :: Software Development",
     "Programming Language :: Python :: 3",
