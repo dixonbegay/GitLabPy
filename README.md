@@ -4,7 +4,7 @@ A Python module to help sort GitLab's Webhooks
 Some of the JSON data coming from GitLab's webhooks are set as attributes to the GitLab class. There are functions within the GitLab class that allow for easy handling of the JSON data.
 
 ## Requirements
-* Python >= 3.9
+* Python >= 3.10
 
 ## Install
 * `pip install GitLabPy`
