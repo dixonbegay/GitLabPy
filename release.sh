@@ -20,6 +20,11 @@ require_cmd uv
 require_cmd git
 require_cmd gh
 
+if [[ -z "${UV_PUBLISH_TOKEN:-}" ]]; then
+    echo "Error: UV_PUBLISH_TOKEN is not set. Export a PyPI API token (scoped to this project) before running this script." >&2
+    exit 1
+fi
+
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 if [[ "$current_branch" != "master" ]]; then
     echo "Error: you're on branch '$current_branch', not 'master'. Switch to master first." >&2

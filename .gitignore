@@ -1,6 +1,7 @@
 dist/*
 GitLabPy.egg-info/*
 .pypirc
+.env
 __pycache__/*
 server-output/*
 build/*
